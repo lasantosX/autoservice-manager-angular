@@ -1,0 +1,24 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo">ASM</div>
+      <div>
+        <h1>AutoService Manager</h1>
+        <p>Angular Frontend</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      <a routerLink="/customers" routerLinkActive="active">Customers</a>
+      <a routerLink="/vehicles" routerLinkActive="active">Vehicles</a>
+      <a routerLink="/technicians" routerLinkActive="active">Technicians</a>
+      <a routerLink="/service-orders" routerLinkActive="active">Service Orders</a>
+      <a routerLink="/settings" routerLinkActive="active">Settings</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
