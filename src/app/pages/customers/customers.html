@@ -1,1 +1,19 @@
-<p>customers works!</p>
+<section class="page-section">
+  <h2>Customers</h2>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <table *ngIf="!loading">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+
+    <tr *ngFor="let c of customers">
+      <td>{{ c.firstName }} {{ c.lastName }}</td>
+      <td>{{ c.email }}</td>
+      <td>{{ c.phone }}</td>
+    </tr>
+  </table>
+</section>
