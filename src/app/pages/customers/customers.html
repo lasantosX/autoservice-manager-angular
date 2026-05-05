@@ -1,19 +1,39 @@
 <section class="page-section">
-  <h2>Customers</h2>
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Customer Management</p>
+      <h2>Customers</h2>
+      <p>Manage customer profiles loaded from the ASP.NET Core API.</p>
+    </div>
 
-  <div *ngIf="loading">Loading...</div>
+    <button class="primary-button">Add Customer</button>
+  </div>
 
-  <table *ngIf="!loading">
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-    </tr>
+  @if (loading) {
+    <p class="loading-text">Loading customers...</p>
+  } @else if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  } @else {
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
 
-    <tr *ngFor="let c of customers">
-      <td>{{ c.firstName }} {{ c.lastName }}</td>
-      <td>{{ c.email }}</td>
-      <td>{{ c.phone }}</td>
-    </tr>
-  </table>
+        <tbody>
+          @for (c of customers; track c.customerId) {
+            <tr>
+              <td>{{ c.firstName }} {{ c.lastName }}</td>
+              <td>{{ c.email }}</td>
+              <td>{{ c.phone }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
 </section>

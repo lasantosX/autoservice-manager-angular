@@ -1,31 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CustomerService } from '../../api/customer';
 import { Customer } from '../../types/customer';
-import { PagedResponse } from '../../types/paged';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-customers',
-  imports: [CommonModule],
   templateUrl: './customers.html',
   styleUrl: './customers.css',
 })
 export class Customers implements OnInit {
   customers: Customer[] = [];
-  loading = true;
+  loading = false;
+  errorMessage = '';
 
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.customerService.getCustomers().subscribe({
-      next: (res: PagedResponse<Customer>) => {
-        this.customers = res.items;
-        this.loading = false;
-      },
-      error: (err: unknown) => {
-        console.error(err);
-        this.loading = false;
-      },
-    });
+    this.loadCustomers();
+  }
+
+  private loadCustomers(): void {
+    this.loading = true;
+    this.errorMessage = '';
+
+    this.customerService
+      .getCustomers()
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: (res) => {
+          this.customers = res.items;
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('Error loading customers:', err);
+          this.errorMessage = 'Unable to load customers.';
+          this.cdr.detectChanges();
+        },
+      });
   }
 }
