@@ -1,59 +1,53 @@
-# AutoserviceManagerAngular
+# AutoService Manager - Angular Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+Angular + TypeScript frontend for an automotive service management system, connected to a real ASP.NET Core Web API.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+- Angular
+- TypeScript
+- Angular Router
+- HttpClient
+- RxJS
+- Custom CSS
+- ASP.NET Core Web API integration
 
-```bash
+## Features
+
+- Dashboard layout
+- Sidebar navigation
+- Customers API integration
+- Vehicles by customer API integration
+- Technicians API integration
+- Service Orders API integration
+- Typed API models
+- Paginated API response handling
+- Clean service-based architecture
+
+## API Endpoints Used
+
+- GET `/api/Customers`
+- GET `/api/customers/{customerId}/vehicles`
+- GET `/api/Technicians`
+- GET `/api/ServiceOrders`
+
+## Project Structure
+
+```text
+src/app/
+  api/
+  layouts/
+  pages/
+  types/
+Run Locally
+npm install
 ng serve
-```
+Backend URL
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The API base URL is currently configured inside the Angular services:
 
-## Code scaffolding
+https://localhost:44323/api
+Author
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Luis Santos
+Senior Software Developer - .NET / Angular / React / Vue / SQL Server
