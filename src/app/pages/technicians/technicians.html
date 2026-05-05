@@ -1,1 +1,39 @@
-<p>technicians works!</p>
+<section class="page-section">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Shop Management</p>
+      <h2>Technicians</h2>
+      <p>Monitor technicians loaded from the ASP.NET Core API.</p>
+    </div>
+
+    <button class="primary-button">Add Technician</button>
+  </div>
+
+  @if (loading) {
+    <p class="loading-text">Loading technicians...</p>
+  } @else if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  } @else {
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (t of technicians; track t.technicianId) {
+            <tr>
+              <td>{{ t.fullName }}</td>
+              <td>{{ t.email }}</td>
+              <td>{{ t.isActive ? 'Active' : 'Inactive' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

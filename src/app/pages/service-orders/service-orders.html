@@ -1,1 +1,45 @@
-<p>service-orders works!</p>
+<section class="page-section">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Repair Order Workflow</p>
+      <h2>Service Orders</h2>
+      <p>Review service orders loaded from the ASP.NET Core API.</p>
+    </div>
+
+    <button class="primary-button">Create Service Order</button>
+  </div>
+
+  @if (loading) {
+    <p class="loading-text">Loading service orders...</p>
+  } @else if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  } @else {
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Order Number</th>
+            <th>Vehicle ID</th>
+            <th>Status</th>
+            <th>Labor</th>
+            <th>Parts</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (order of serviceOrders; track order.serviceOrderId) {
+            <tr>
+              <td>{{ order.orderNumber }}</td>
+              <td>{{ order.vehicleId }}</td>
+              <td>{{ getStatusLabel(order.status) }}</td>
+              <td>${{ order.totalLaborAmount.toFixed(2) }}</td>
+              <td>${{ order.totalPartsAmount.toFixed(2) }}</td>
+              <td>${{ order.totalAmount.toFixed(2) }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>
